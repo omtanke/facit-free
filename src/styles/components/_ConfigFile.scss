@@ -1,0 +1,159 @@
+//
+//  Config Only Components
+//
+
+// stylelint-disable annotation-no-unknown
+
+//  Aside Config
+$aside: (
+	mobile-breakpoint: md,
+	width: 15rem,
+	// Don't forget to make changes to the .env file as well.
+	background-color: shade-color($primary, 95%),
+	border-size: 0,
+	border-color: shade-color($primary, 95%),
+	minimize: (
+		width: 4.5rem,
+	),
+	head: (
+		padding-y: 0,
+		padding-x: $spacer * 0.75,
+	),
+	body: (
+		padding-y: $spacer * 0.75,
+		padding-x: 0,
+	),
+	foot: (
+		padding-y: 0,
+		padding-x: 0,
+	),
+	hover: (
+		blur: 0.3rem,
+		opacity: 0.6,
+	),
+	shadow: true,
+) !default;
+
+$brand: () !default;
+
+$avatar: (
+	padding-y: $spacer,
+	padding-x: $spacer,
+	avatar: (
+		space: $spacer * 0.75,
+		background-color: $primary,
+		color-weight: 85%,
+		size: 2.5rem,
+	),
+	name: (
+		font-size: 0.9rem,
+	),
+	subt-title: (
+		font-size: 0.7rem,
+	),
+) !default;
+
+$header: (
+	height: 5rem,
+	background-color: $white,
+	dark-background-color: shade-color($dark-body-bg, 70%),
+	color: #808191,
+	color-dark: $dark,
+	opacity: 0.5,
+	blur: 0.5rem,
+	border-size: 0,
+	border-color: $gray-100,
+	box-shadow: $box-shadow,
+	padding-y: 0,
+	padding-x: $grid-gutter-width * 0.5,
+	dropdown: (
+		width: 15rem,
+		border-radius: 1.5rem,
+	),
+	mobile: (
+		height: 5rem,
+		blur: 0.5rem,
+		color: null,
+		dark-color: null,
+		background-color: #fff,
+		dark-background-color: shade-color($dark-body-bg, 70%),
+		opacity: 0.7,
+		left: (
+			background-color: $white,
+			dark-background-color: shade-color($dark-body-bg, 70%),
+			opacity: 0.9,
+		),
+		right: (
+			opacity: 0.9,
+		),
+	),
+) !default;
+
+$subheader: (
+	height: 4rem,
+	background-color: $white,
+	dark-background-color: shade-color($dark-body-bg, 70%),
+	color: $body-color,
+	color-dark: $dark,
+	opacity: 0.5,
+	blur: 0.5rem,
+	border-size: 1px,
+	border-color: $gray-100,
+	dark-border-color: $gray-900,
+	padding-y: 0,
+	padding-x: $grid-gutter-width * 0.5,
+	separator: (
+		border-color: $gray-500,
+	),
+) !default;
+
+$content: (
+	padding-y: 0,
+	padding-x: 0,
+) !default;
+
+$page: (
+	padding-y: $grid-gutter-width,
+) !default;
+
+$footer: (
+	height: 3rem,
+	background-color: $white,
+	dark-background-color: shade-color($dark-body-bg, 70%),
+	color: $body-color,
+	color-dark: $dark-body-color,
+	opacity: 0.5,
+	blur: 0.5rem,
+	border-size: 1px,
+	border-color: $gray-100,
+	dark-border-color: $gray-900,
+	padding-y: 0,
+	padding-x: $grid-gutter-width * 0.5,
+) !default;
+
+$navigation: (
+	padding-y: $spacer * 0.75,
+	padding-x: $spacer * 0.75,
+	margin-y: $spacer * 0.375,
+	margin-x: $spacer * 0.75,
+	item: (
+		height: 3rem,
+		font-size: 0.875rem,
+		border-radius: $border-radius,
+		background-color: null,
+		color-dark: $dark,
+		color-light: $light,
+		active: (
+			background-color: $primary,
+		),
+		icon: (
+			size: 1.5rem,
+			space: $spacer,
+		),
+		arrow: (
+			size: 1.4rem,
+		),
+	),
+) !default;
+
+// stylelint-enable annotation-no-unknown

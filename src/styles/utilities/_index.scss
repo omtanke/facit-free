@@ -1,0 +1,344 @@
+@use 'sass:map';
+
+//
+// Utilities
+// Settings - Tools - Generic - Elements - Objects - Components - UTILITIES
+//
+
+@import 'shadow';
+@import 'truncate';
+
+// Page Content Height
+$utilities: map.merge(
+	$utilities,
+	(
+		'height-fluid-minimum': (
+			property: min-height,
+			class: h-fluid-min,
+			responsive: true,
+			values: (
+				50:
+					calc(
+						(
+								100vh - var(--header-height) - var(--subheader-height) -
+									var(--footer-height)
+							) / 2 - #{$spacer * 2}
+					),
+				100:
+					calc(
+						100vh - var(--header-height) - var(--subheader-height) -
+							var(--footer-height) - #{$spacer * 2}
+					),
+			),
+		),
+	)
+);
+
+// Light Background Color
+$utilities: map.merge(
+	$utilities,
+	(
+		'background-light 10%': (
+			property: background-color,
+			state: hover,
+			class: bg-l10,
+			values: (
+				primary: tint-color($primary, 90%),
+				secondary: tint-color($secondary, 90%),
+				success: tint-color($success, 90%),
+				info: tint-color($info, 90%),
+				warning: tint-color($warning, 90%),
+				danger: tint-color($danger, 90%),
+				light: tint-color($light, 90%),
+				dark: tint-color($dark, 90%),
+				brand: tint-color($brand, 90%),
+				brand-two: tint-color($brand-two, 90%),
+			),
+		),
+		'background-light 25%': (
+			property: background-color,
+			state: hover,
+			class: bg-l25,
+			values: (
+				primary: tint-color($primary, 75%),
+				secondary: tint-color($secondary, 75%),
+				success: tint-color($success, 75%),
+				info: tint-color($info, 75%),
+				warning: tint-color($warning, 75%),
+				danger: tint-color($danger, 75%),
+				light: tint-color($light, 75%),
+				dark: tint-color($dark, 75%),
+				brand: tint-color($brand, 75%),
+				brand-two: tint-color($brand-two, 75%),
+			),
+		),
+		'background-light 50%': (
+			property: background-color,
+			state: hover,
+			class: bg-l50,
+			values: (
+				primary: tint-color($primary, 50%),
+				secondary: tint-color($secondary, 50%),
+				success: tint-color($success, 50%),
+				info: tint-color($info, 50%),
+				warning: tint-color($warning, 50%),
+				danger: tint-color($danger, 50%),
+				light: tint-color($light, 50%),
+				dark: tint-color($dark, 50%),
+				brand: tint-color($brand, 50%),
+				brand-two: tint-color($brand-two, 50%),
+			),
+		),
+		'background-light 75%': (
+			property: background-color,
+			state: hover,
+			class: bg-l75,
+			values: (
+				primary: tint-color($primary, 25%),
+				secondary: tint-color($secondary, 25%),
+				success: tint-color($success, 25%),
+				info: tint-color($info, 25%),
+				warning: tint-color($warning, 25%),
+				danger: tint-color($danger, 25%),
+				light: tint-color($light, 25%),
+				dark: tint-color($dark, 25%),
+				brand: tint-color($brand, 25%),
+				brand-two: tint-color($brand-two, 25%),
+			),
+		),
+		'background-light 90%': (
+			property: background-color,
+			state: hover,
+			class: bg-l90,
+			values: (
+				primary: tint-color($primary, 10%),
+				secondary: tint-color($secondary, 10%),
+				success: tint-color($success, 10%),
+				info: tint-color($info, 10%),
+				warning: tint-color($warning, 10%),
+				danger: tint-color($danger, 10%),
+				light: tint-color($light, 10%),
+				dark: tint-color($dark, 10%),
+				brand: tint-color($brand, 10%),
+				brand-two: tint-color($brand-two, 10%),
+			),
+		),
+	)
+);
+
+$utilities: map.merge(
+	$utilities,
+	(
+		'background-like-opacity 90%': (
+			property: background-color,
+			state: hover,
+			class: bg-lo90,
+			values: (
+				primary: rgba-to-rgb(rgba($primary, 0.9), $dark),
+				secondary: rgba-to-rgb(rgba($secondary, 0.9), $dark),
+				success: rgba-to-rgb(rgba($success, 0.9), $dark),
+				info: rgba-to-rgb(rgba($info, 0.9), $dark),
+				warning: rgba-to-rgb(rgba($warning, 0.9), $dark),
+				danger: rgba-to-rgb(rgba($danger, 0.9), $dark),
+				light: rgba-to-rgb(rgba($light, 0.9), $dark),
+				dark: rgba-to-rgb(rgba($dark, 0.9), $dark),
+				brand: rgba-to-rgb(rgba($brand, 0.9), $dark),
+				brand-two: rgba-to-rgb(rgba($brand-two, 0.9), $dark),
+			),
+		),
+		'background-like-opacity 75%': (
+			property: background-color,
+			state: hover,
+			class: bg-lo75,
+			values: (
+				primary: rgba-to-rgb(rgba($primary, 0.75), $dark),
+				secondary: rgba-to-rgb(rgba($secondary, 0.75), $dark),
+				success: rgba-to-rgb(rgba($success, 0.75), $dark),
+				info: rgba-to-rgb(rgba($info, 0.75), $dark),
+				warning: rgba-to-rgb(rgba($warning, 0.75), $dark),
+				danger: rgba-to-rgb(rgba($danger, 0.75), $dark),
+				light: rgba-to-rgb(rgba($light, 0.75), $dark),
+				dark: rgba-to-rgb(rgba($dark, 0.75), $dark),
+				brand: rgba-to-rgb(rgba($brand, 0.75), $dark),
+				brand-two: rgba-to-rgb(rgba($brand-two, 0.75), $dark),
+			),
+		),
+		'background-like-opacity 50%': (
+			property: background-color,
+			state: hover,
+			class: bg-lo50,
+			values: (
+				primary: rgba-to-rgb(rgba($primary, 0.5), $dark),
+				secondary: rgba-to-rgb(rgba($secondary, 0.5), $dark),
+				success: rgba-to-rgb(rgba($success, 0.5), $dark),
+				info: rgba-to-rgb(rgba($info, 0.5), $dark),
+				warning: rgba-to-rgb(rgba($warning, 0.5), $dark),
+				danger: rgba-to-rgb(rgba($danger, 0.5), $dark),
+				light: rgba-to-rgb(rgba($light, 0.5), $dark),
+				dark: rgba-to-rgb(rgba($dark, 0.5), $dark),
+				brand: rgba-to-rgb(rgba($brand, 0.5), $dark),
+				brand-two: rgba-to-rgb(rgba($brand-two, 0.5), $dark),
+			),
+		),
+		'background-like-opacity 25%': (
+			property: background-color,
+			state: hover,
+			class: bg-lo25,
+			values: (
+				primary: rgba-to-rgb(rgba($primary, 0.25), $dark),
+				secondary: rgba-to-rgb(rgba($secondary, 0.25), $dark),
+				success: rgba-to-rgb(rgba($success, 0.25), $dark),
+				info: rgba-to-rgb(rgba($info, 0.25), $dark),
+				warning: rgba-to-rgb(rgba($warning, 0.25), $dark),
+				danger: rgba-to-rgb(rgba($danger, 0.25), $dark),
+				light: rgba-to-rgb(rgba($light, 0.25), $dark),
+				dark: rgba-to-rgb(rgba($dark, 0.25), $dark),
+				brand: rgba-to-rgb(rgba($brand, 0.25), $dark),
+				brand-two: rgba-to-rgb(rgba($brand-two, 0.25), $dark),
+			),
+		),
+		'background-like-opacity 10%': (
+			property: background-color,
+			state: hover,
+			class: bg-lo10,
+			values: (
+				primary: rgba-to-rgb(rgba($primary, 0.1), $dark),
+				secondary: rgba-to-rgb(rgba($secondary, 0.1), $dark),
+				success: rgba-to-rgb(rgba($success, 0.1), $dark),
+				info: rgba-to-rgb(rgba($info, 0.1), $dark),
+				warning: rgba-to-rgb(rgba($warning, 0.1), $dark),
+				danger: rgba-to-rgb(rgba($danger, 0.1), $dark),
+				light: rgba-to-rgb(rgba($light, 0.1), $dark),
+				dark: rgba-to-rgb(rgba($dark, 0.1), $dark),
+				brand: rgba-to-rgb(rgba($brand, 0.1), $dark),
+				brand-two: rgba-to-rgb(rgba($brand-two, 0.1), $dark),
+			),
+		),
+	)
+);
+
+// Background Overwrite and add hover
+$utilities: map.merge(
+	$utilities,
+	(
+		'background-color': (
+			property: background-color,
+			class: bg,
+			local-vars: (
+				'bg-opacity': 1,
+			),
+			state: hover,
+			values:
+				map.merge(
+					$utilities-bg-colors,
+					(
+						'body': $body-bg,
+						'white': $white,
+						'transparent': transparent,
+					)
+				),
+		),
+		'bg-opacity': (
+			css-var: true,
+			class: bg-opacity,
+			values: (
+				5: 0.05,
+				10: 0.1,
+				15: 0.15,
+				20: 0.2,
+				25: 0.25,
+				50: 0.5,
+				75: 0.75,
+				80: 0.8,
+				85: 0.85,
+				90: 0.9,
+				95: 0.95,
+				100: 1,
+			),
+		),
+	)
+);
+
+$utilities: map.merge(
+	$utilities,
+	(
+		'transition-color': (
+			property: transition,
+			class: transition,
+			values: (
+				'base': $transition-base,
+				'fade': $transition-fade,
+				'collapse': $transition-collapse,
+			),
+		),
+	)
+);
+
+// Text Overflow
+$utilities: map.merge(
+	$utilities,
+	(
+		'text-overflow': (
+			property: text-overflow,
+			values: clip ellipsis initial inherit,
+		),
+	)
+);
+
+// Object Fit
+$utilities: map.merge(
+	$utilities,
+	(
+		'object-fit': (
+			property: object-fit,
+			values: contain cover fill,
+		),
+	)
+);
+
+// Cursor
+$utilities: map.merge(
+	$utilities,
+	(
+		'cursor': (
+			property: cursor,
+			values: none not-allowed pointer help,
+		),
+	)
+);
+
+// Opacity
+$utilities: map.merge(
+	$utilities,
+	(
+		'opacity': (
+			property: opacity,
+			responsive: true,
+			values: (
+				0: 0,
+				25: 0.25,
+				50: 0.5,
+				75: 0.75,
+				100: 1,
+			),
+		),
+	)
+);
+
+$utilities: map.merge(
+	$utilities,
+	(
+		'blur': (
+			property: backdrop-filter,
+			class: blur,
+			state: hover,
+			values: (
+				0: blur(0),
+				25: blur(0.25rem),
+				50: blur(0.5rem),
+				75: blur(0.75rem),
+				100: blur(1rem),
+			),
+		),
+	)
+);

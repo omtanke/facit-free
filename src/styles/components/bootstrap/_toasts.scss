@@ -1,0 +1,14 @@
+//
+// Toasts
+//
+.toast {
+	@include dark-mode {
+		background-color: $dark-toast-background-color;
+	}
+}
+
+.toast-header {
+	@include dark-mode {
+		background-color: $dark-toast-header-background-color;
+	}
+}

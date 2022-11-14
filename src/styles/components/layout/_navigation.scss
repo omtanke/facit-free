@@ -1,0 +1,397 @@
+//
+//  Navigation
+//
+
+@use 'sass:map';
+
+.navigation {
+	$self: &;
+
+	@mixin menu-item-visible($count) {
+		.navigation.navigation-menu .navigation-item-more .navigation &:nth-child(-n + #{$count}),
+		.navigation.navigation-menu > &:nth-child(n + #{$count + 1}) {
+			display: none;
+		}
+
+		// stylelint-disable selector-max-specificity
+		// stylelint-disable selector-max-class
+		.navigation.navigation-menu > &.navigation-item-more {
+			display: none;
+			// stylelint-disable no-duplicate-selectors
+			&:nth-child(n + #{$count + 2}) {
+				display: list-item;
+			}
+			// stylelint-enable no-duplicate-selectors
+		}
+		// stylelint-enable selector-max-specificity
+		// stylelint-enable selector-max-class
+	}
+
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	// Header menu
+	&-menu {
+		display: flex;
+		flex-wrap: wrap;
+
+		#{ $self } {
+			@include padding((map.get($navigation, padding-y) * 0.5) 0);
+
+			width: map-deep-get($header, dropdown, width);
+			border: none;
+			border-radius: map-deep-get($header, dropdown, border-radius);
+			box-shadow: $box-shadow;
+		}
+
+		// stylelint-disable no-duplicate-selectors
+		#{ $self }-link-extra {
+			@include margin-left(map.get($navigation, margin-x));
+		}
+		// stylelint-enable no-duplicate-selectors
+	}
+
+	//  Item
+	&-item {
+		@include padding(map.get($navigation, margin-y) map.get($navigation, margin-x));
+
+		transition: $transition-base;
+
+		@include media-breakpoint-only(md) {
+			@include menu-item-visible(2);
+		}
+
+		@include media-breakpoint-only(lg) {
+			@include menu-item-visible(2);
+		}
+
+		@include media-breakpoint-only(xl) {
+			@include menu-item-visible(3);
+		}
+
+		@include media-breakpoint-only(xxl) {
+			@include menu-item-visible(4);
+		}
+
+		//  Sub Menu Item
+		// stylelint-disable no-duplicate-selectors
+		#{ $self } #{ $self } & {
+			@include padding(map.get($navigation, margin-y) 0 0 map.get($navigation, margin-x));
+
+			@include aside-close {
+				@include padding(map.get($navigation, margin-y) 0 0 0);
+			}
+		}
+
+		// Header sub menu item
+
+		#{ $self }#{ $self }-menu #{ $self } & {
+			@include padding(
+				(map.get($navigation, padding-y) * 0.5) map.get($navigation, padding-x)
+			);
+		}
+
+		#{ $self }#{ $self }-menu > &:first-child {
+			@include padding-left(0);
+		}
+		// stylelint-enable no-duplicate-selectors
+	}
+
+	// Title
+	&-title {
+		@include padding(0 map.get($navigation, padding-x));
+
+		display: block;
+		color: rgba(
+			color-contrast(
+				auto-shade-tint(map-deep-get($aside, background-color), 1%),
+				map-deep-get($navigation, item, color-dark),
+				map-deep-get($navigation, item, color-light)
+			),
+			0.6
+		);
+		font-size: 0.8rem;
+		font-weight: 600;
+		line-height: 1rem;
+
+		@include aside-close {
+			overflow: hidden;
+			width: 3rem;
+			height: 0.2rem;
+			margin-top: 0.4rem;
+			margin-bottom: 0.4rem;
+			background-color: rgba(
+				color-contrast(
+					auto-shade-tint(map-deep-get($aside, background-color), 1%),
+					map-deep-get($navigation, item, color-dark),
+					map-deep-get($navigation, item, color-light)
+				),
+				0.6
+			);
+			border-radius: 10rem;
+			color: transparent;
+			content: ' ';
+			text-align: center;
+			white-space: nowrap;
+		}
+	}
+
+	//  Link
+	&-link {
+		@include font-size(map-deep-get($navigation, item, font-size));
+		@include padding(map.get($navigation, padding-y) map.get($navigation, padding-x));
+
+		position: relative;
+		display: flex;
+		height: map-deep-get($navigation, item, height);
+		align-items: center;
+		justify-content: space-between;
+		background-color: map-deep-get($navigation, item, background-color);
+		color: if(
+			map.get($header, color),
+			map.get($header, color),
+			color-contrast(map.get($header, background-color), map.get($header, color-dark))
+		);
+		font-weight: 600;
+		outline: none;
+		text-decoration: none;
+		transition: $transition-base;
+
+		@include aside-elements {
+			color: if(
+				map-deep-get($navigation, item, background-color) == null,
+				color-contrast(
+					auto-shade-tint(map-deep-get($aside, background-color), 8%),
+					map-deep-get($navigation, item, color-dark),
+					map-deep-get($navigation, item, color-light)
+				),
+				color-contrast(
+					map-deep-get($navigation, item, background-color),
+					map-deep-get($navigation, item, color-dark),
+					map-deep-get($navigation, item, color-light)
+				)
+			);
+		}
+
+		@include aside-close {
+			justify-content: center;
+		}
+
+		// stylelint-disable no-duplicate-selectors
+		#{ $self }-menu & {
+			color: if(
+				map.get($header, color),
+				map.get($header, color),
+				color-contrast(map.get($header, background-color), map.get($header, color-dark))
+			);
+		}
+
+		#{ $self }#{ $self }-menu & {
+			@include padding(0.625rem 1rem);
+		}
+
+		//  Status
+		#{$self} &-pill {
+			border-radius: map-deep-get($navigation, item, border-radius);
+		}
+		// stylelint-enable no-duplicate-selectors
+
+		// Active Link
+		&.active {
+			background-color: tint-color(
+				map-deep-get($navigation, item, active, background-color),
+				85%
+			);
+			color: shade-color(map-deep-get($navigation, item, active, background-color), 15%);
+
+			@include aside-elements {
+				background-color: auto-shade-tint(map-deep-get($aside, background-color), 8%);
+				color: color-contrast(
+					auto-shade-tint(map-deep-get($aside, background-color), 8%),
+					map-deep-get($navigation, item, color-dark),
+					map-deep-get($navigation, item, color-light)
+				);
+			}
+
+			// stylelint-disable no-duplicate-selectors
+			#{$self}-icon {
+				// color: $primary;
+			}
+
+			#{ $self }#{ $self }-menu & {
+				@include dark-mode {
+					background-color: rgba-to-rgb(
+						rgba(map-deep-get($navigation, item, active, background-color), 0.1),
+						$dark
+					);
+					color: map-deep-get($navigation, item, active, background-color);
+				}
+
+				background-color: tint-color(
+					map-deep-get($navigation, item, active, background-color),
+					85%
+				);
+				color: shade-color(map-deep-get($navigation, item, active, background-color), 15%);
+			}
+			// stylelint-enable no-duplicate-selectors
+		}
+
+		//  Submenu open
+		&[aria-expanded='true'] {
+			background-color: tint-color(
+				map-deep-get($navigation, item, active, background-color),
+				85%
+			);
+			color: shade-color(map-deep-get($navigation, item, active, background-color), 15%);
+
+			@include aside-elements {
+				background-color: auto-shade-tint(map-deep-get($aside, background-color), 12%);
+				color: color-contrast(
+					auto-shade-tint(map-deep-get($aside, background-color), 12%),
+					map-deep-get($navigation, item, color-dark),
+					map-deep-get($navigation, item, color-light)
+				);
+			}
+
+			// stylelint-disable no-duplicate-selectors
+			#{ $self }#{ $self }-menu & {
+				@include dark-mode {
+					background-color: rgba-to-rgb(
+						rgba(map-deep-get($navigation, item, active, background-color), 0.1),
+						$dark
+					);
+					color: map-deep-get($navigation, item, active, background-color);
+				}
+
+				background-color: tint-color(
+					map-deep-get($navigation, item, active, background-color),
+					85%
+				);
+				color: shade-color(map-deep-get($navigation, item, active, background-color), 15%);
+			}
+
+			#{$self}-arrow {
+				transform: rotate(90deg);
+			}
+			// stylelint-enable no-duplicate-selectors
+		}
+
+		//  Hover
+		&:hover {
+			background-color: tint-color(
+				map-deep-get($navigation, item, active, background-color),
+				90%
+			);
+			color: shade-color(map-deep-get($navigation, item, active, background-color), 0%);
+
+			@include aside-elements {
+				background-color: auto-shade-tint(map-deep-get($aside, background-color), 12%);
+				color: color-contrast(
+					auto-shade-tint(map-deep-get($aside, background-color), 12%),
+					map-deep-get($navigation, item, color-dark),
+					map-deep-get($navigation, item, color-light)
+				);
+			}
+
+			// stylelint-disable no-duplicate-selectors
+			#{ $self }#{ $self }-menu & {
+				@include dark-mode {
+					background-color: rgba-to-rgb(
+						rgba(map-deep-get($navigation, item, active, background-color), 0.05),
+						$dark
+					);
+					color: map-deep-get($navigation, item, active, background-color);
+				}
+
+				background-color: tint-color(
+					map-deep-get($navigation, item, active, background-color),
+					90%
+				);
+				color: shade-color(map-deep-get($navigation, item, active, background-color), 0%);
+			}
+			// stylelint-enable no-duplicate-selectors
+		}
+	}
+
+	&-link-info {
+		display: flex;
+		overflow: hidden;
+		align-items: center;
+	}
+
+	&-link-extra {
+		display: flex;
+		align-items: center;
+
+		@include aside-close {
+			position: absolute;
+			right: 0;
+		}
+	}
+
+	//  Text
+	&-text {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+
+		@include aside-close {
+			font-size: 0;
+		}
+	}
+
+	//  Icon
+	&-icon {
+		@include font-size(map-deep-get($navigation, item, icon, size));
+		@include margin-right(map-deep-get($navigation, item, icon, space));
+
+		display: flex;
+		flex: 1 0 auto;
+
+		@include aside-close {
+			@include margin-right(0);
+		}
+	}
+
+	&-arrow {
+		@include font-size(map-deep-get($navigation, item, arrow, size));
+
+		transition: $transition-base;
+
+		@include aside-close {
+			@include font-size(1rem);
+		}
+	}
+
+	&-notification {
+		@include aside-close {
+			position: relative;
+			top: -0.5rem;
+			right: 0.5rem;
+		}
+	}
+
+	// Line
+	&-line {
+		@include margin((map.get($navigation, margin-y) * 2) 0);
+
+		border-bottom-color: if(
+			map-deep-get($navigation, item, background-color) == null,
+			color-contrast(auto-shade-tint(map-deep-get($aside, background-color), 8%)),
+			color-contrast(
+				map-deep-get($navigation, item, background-color),
+				map-deep-get($navigation, item, color-dark),
+				map-deep-get($navigation, item, color-light)
+			)
+		);
+		border-bottom-style: solid;
+		border-bottom-width: 1px; // stylelint-disable-line declaration-block-no-redundant-longhand-properties
+		opacity: 0.15;
+	}
+
+	&.dropdown-menu {
+		overflow: auto;
+		max-height: 70vh;
+	}
+}

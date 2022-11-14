@@ -1,0 +1,38 @@
+//
+//  Footer
+//
+
+@use 'sass:math';
+@use 'sass:map';
+
+.footer {
+	@include dark-mode {
+		background-color: rgba(map.get($footer, dark-background-color), map.get($footer, opacity));
+		border-top-color: map.get($footer, dark-border-color);
+		color: map.get($footer, color-dark);
+	}
+	@include padding(map.get($footer, padding-y) map.get($footer, padding-x));
+	@include backdrop-filter-blur(map.get($footer, blur));
+
+	position: sticky;
+	z-index: math.round($zindex-sticky - 2);
+	bottom: 0;
+	display: flex;
+	height: map.get($footer, height);
+	align-items: center;
+	border-top: map.get($footer, border-size) solid map.get($footer, border-color);
+	background-color: rgba(map.get($footer, background-color), map.get($footer, opacity));
+	color: map.get($footer, color);
+}
+
+.modern-design .footer {
+	@include footer-modern {
+		@include margin(
+			0 $modern-design-gutter-size $modern-design-size $modern-design-gutter-size
+		);
+		@include border-radius($modern-design-radius);
+		@include box-shadow($modern-design-shadow);
+
+		border-top: 0;
+	}
+}

@@ -1,0 +1,31 @@
+//
+//	Nav
+//
+
+.nav-tabs {
+	@include dark-mode {
+		border-bottom-color: $dark-nav-tabs-border-color;
+	}
+
+	.nav-link {
+		&:hover,
+		&:focus {
+			@include dark-mode {
+				border-color: $dark-nav-tabs-link-hover-border-color;
+			}
+		}
+	}
+
+	// stylelint-disable selector-max-class
+	// stylelint-disable selector-max-specificity
+	.nav-link.active,
+	.nav-item.show .nav-link {
+		@include dark-mode {
+			background-color: $dark-nav-tabs-link-active-bg;
+			border-color: $dark-nav-tabs-link-active-border-color;
+			color: $dark-nav-tabs-link-active-color;
+		}
+	}
+	// stylelint-enable selector-max-class
+	// stylelint-enable selector-max-specificity
+}

@@ -1,0 +1,16 @@
+//
+// Root
+//
+
+:root {
+	--#{$prefix}card-bg: #{$card-bg};
+	--#{$prefix}card-header-bg: #{$card-header-background-color};
+	--#{$prefix}card-footer-bg: #{$card-header-background-color};
+	--#{$prefix}border-radius: #{$border-radius};
+}
+
+[theme='dark']:root {
+	// Body
+	--#{$prefix}body-bg: #{$dark-body-bg};
+	--#{$prefix}body-color: #{$dark-body-color};
+}

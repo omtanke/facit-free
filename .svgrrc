@@ -1,0 +1,3 @@
+icon: true
+replaceAttrValues: { '#000': 'currentColor' }
+svgProps: { className: 'svg-icon' }

@@ -1,0 +1,13 @@
+//
+//  App
+//
+
+.app {
+	display: flex;
+	flex: 1 0 auto;
+	flex-direction: column;
+	// Mobile Status
+	@include media-breakpoint-down(map-get($aside, mobile-breakpoint)) {
+		overflow: hidden;
+	}
+}

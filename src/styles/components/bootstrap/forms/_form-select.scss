@@ -1,0 +1,34 @@
+//
+// Form Select
+//
+
+.form-select {
+	@include dark-mode {
+		background-color: $dark-input-bg;
+		color: $dark-input-color;
+
+		&:not([class*='valid']) {
+			border-color: $dark-input-border-color;
+		}
+	}
+
+	// Disabled and read-only inputs
+	//
+	// HTML5 says that controls under a fieldset > legend:first-child won't be
+	// disabled if the fieldset is disabled. Due to implementation difficulty, we
+	// don't honor that edge case; we style them as disabled anyway.
+	&:disabled,
+	&[readonly] {
+		@include dark-mode {
+			background-color: $dark-input-disabled-bg;
+		}
+	}
+}
+
+.form-select-sm {
+	@include border-radius($form-select-border-radius-sm);
+}
+
+.form-select-lg {
+	@include border-radius($form-select-border-radius-lg);
+}

@@ -1,0 +1,82 @@
+//
+//  User
+//
+
+.user {
+	@include padding(map-deep-get($avatar, padding-y) map-deep-get($avatar, padding-x));
+
+	display: flex;
+	align-items: center;
+	background-color: auto-shade-tint(map-deep-get($aside, background-color), 8%);
+	color: color-contrast(
+		auto-shade-tint(map-deep-get($aside, background-color), 8%),
+		map-deep-get($navigation, item, color-dark),
+		map-deep-get($navigation, item, color-light)
+	);
+	cursor: pointer;
+	transition: $transition-base;
+
+	&.open {
+		@include padding(
+			(map-deep-get($avatar, padding-y) * 0.5) (map-deep-get($avatar, padding-x) * 0.5)
+		);
+		@include margin(
+			(map-deep-get($avatar, padding-y) * 0.5) (map-deep-get($avatar, padding-x) * 0.5)
+		);
+
+		border-radius: $border-radius * 0.5;
+	}
+
+	&:hover {
+		background-color: auto-shade-tint(map-deep-get($aside, background-color), 16%);
+	}
+}
+
+.user-avatar {
+	@include margin-right(map-deep-get($avatar, avatar, space));
+
+	@include aside-close {
+		@include margin-right(0);
+	}
+
+	img {
+		width: map-deep-get($avatar, avatar, size);
+		height: map-deep-get($avatar, avatar, size);
+		background-color: tint-color(
+			map-deep-get($avatar, avatar, background-color),
+			map-deep-get($avatar, avatar, color-weight)
+		);
+		border-radius: map-deep-get($avatar, avatar, size);
+		box-shadow: $box-shadow;
+		object-fit: cover;
+	}
+
+	@each $color, $value in $theme-colors {
+		&-#{$color} img {
+			background-color: tint-color($value, map-deep-get($avatar, avatar, color-weight));
+		}
+	}
+}
+
+.user-info {
+	@include aside-close {
+		display: none;
+	}
+}
+
+.user-name {
+	@include font-size(map-deep-get($avatar, name, font-size));
+
+	font-weight: 600;
+}
+
+.user-sub-title {
+	@include font-size(map-deep-get($avatar, subt-title, font-size));
+
+	color: $gray-600;
+	font-weight: 400;
+}
+
+.user-menu {
+	padding-bottom: 1rem - 0.375rem;
+}

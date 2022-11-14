@@ -1,0 +1,39 @@
+//
+// Breadcrumbs
+//
+
+.breadcrumb {
+	$self: &;
+
+	align-items: center;
+
+	// Item
+	&-item {
+		a {
+			color: $gray-600;
+			font-weight: 600;
+			text-decoration: none;
+			vertical-align: middle;
+
+			&:hover {
+				color: $primary;
+			}
+		}
+
+		// Status
+		&.active {
+			color: $gray-500;
+		}
+	}
+
+	// Icon
+	&-icon {
+		@include margin-right($breadcrumb-item-padding-x);
+
+		color: $gray-700;
+
+		@at-root #{$self} .svg-icon:not(#{&}) {
+			font-size: 1.5rem;
+		}
+	}
+}

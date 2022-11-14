@@ -1,0 +1,31 @@
+//
+//  Header Mixins
+//
+
+@mixin header-modern($isUp: true) {
+	@if $isUp {
+		@include media-breakpoint-up($modern-design-breakpoint) {
+			@content;
+		}
+	} @else {
+		@include media-breakpoint-down($modern-design-breakpoint) {
+			@content;
+		}
+	}
+}
+
+@mixin header-shadow($shadow) {
+	box-shadow: $shadow;
+
+	@include header-modern {
+		@at-root .subheader-enabled:not(.modern-design) & {
+			box-shadow: none;
+		}
+	}
+
+	@include header-modern(false) {
+		@at-root .subheader-enabled.modern-design & {
+			box-shadow: none;
+		}
+	}
+}

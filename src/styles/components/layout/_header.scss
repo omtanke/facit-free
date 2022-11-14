@@ -1,0 +1,214 @@
+//
+//  Header
+//
+
+@use 'sass:map';
+@use 'sass:math';
+
+.header {
+	@include dark-mode {
+		background-color: rgba(map.get($header, dark-background-color), map.get($header, opacity));
+		color: if(
+			map.get($header, color),
+			color-contrast(map.get($header, dark-background-color), map.get($header, color-dark)),
+			map.get($header, color)
+		);
+	}
+	@include padding(map.get($header, padding-y) map.get($header, padding-x));
+	@include header-shadow(map.get($header, box-shadow));
+
+	position: sticky;
+	z-index: $zindex-sticky;
+	top: 0;
+	display: flex;
+	height: map.get($header, height);
+	align-items: center;
+	border-bottom: map.get($header, border-size) solid map.get($header, border-color);
+	background-color: rgba(map.get($header, background-color), map.get($header, opacity));
+	color: if(
+		map.get($header, color),
+		map.get($header, color),
+		color-contrast(map.get($header, background-color), map.get($header, color-dark))
+	);
+
+	// For child element use position fixed
+	@include media-breakpoint-up(map.get($aside, mobile-breakpoint)) {
+		@include backdrop-filter-blur(map.get($header, blur));
+	}
+
+	// Mobile hide
+	@include media-breakpoint-down(map.get($aside, mobile-breakpoint)) {
+		position: fixed;
+		top: if(
+			map.get($header, border-size) == 0,
+			map.get($header, height) * -1,
+			calc((#{map.get($header, height)} + #{map.get($header, border-size)}) * -1)
+		);
+	}
+
+	&-left {
+		@include media-breakpoint-down(map.get($aside, mobile-breakpoint)) {
+			@include dark-mode {
+				background: rgba(
+					map-deep-get($header, mobile, left, dark-background-color),
+					map-deep-get($header, mobile, left, opacity)
+				);
+			}
+
+			position: fixed;
+			z-index: math.round(1);
+			top: map-deep-get($header, mobile, height);
+			bottom: 0;
+			left: map.get($aside, width) * -1;
+			width: map.get($aside, width);
+			background: rgba(
+				map-deep-get($header, mobile, left, background-color),
+				map.get($header, opacity)
+			);
+			box-shadow: $box-shadow;
+			transition: $transition-base;
+
+			&-open & {
+				@include backdrop-filter-blur(map.get($header, blur));
+
+				left: 0;
+			}
+		}
+
+		> *:not(:last-child) {
+			@include margin-right($spacer);
+		}
+	}
+
+	&-right {
+		@include media-breakpoint-down(map.get($aside, mobile-breakpoint)) {
+			@include dark-mode {
+				background-color: rgba(
+					map.get($header, dark-background-color),
+					map-deep-get($header, mobile, right, opacity)
+				);
+				color: if(
+					map.get($header, color),
+					color-contrast(
+						map.get($header, dark-background-color),
+						map.get($header, color-dark)
+					),
+					map.get($header, color)
+				);
+			}
+			@include padding-top($spacer * 0.5);
+			@include padding-bottom($spacer * 0.5);
+			@include backdrop-filter-blur(map.get($header, blur));
+
+			position: fixed;
+			top: 0;
+			right: 0;
+			left: 0;
+			background-color: rgba(map.get($header, background-color), map.get($header, opacity));
+			box-shadow: $box-shadow;
+			opacity: 0;
+			transition: all 0.2s ease, opacity 0.1s ease-in-out;
+
+			&-open & {
+				top: map.get($header, height);
+				opacity: 1;
+			}
+		}
+
+		> *:not(:last-child) {
+			@include margin-right($spacer);
+		}
+	}
+}
+
+.modern-design .header {
+	@include header-modern {
+		@include margin($modern-design-size $modern-design-gutter-size);
+		@include border-radius($modern-design-radius);
+		@include box-shadow($modern-design-shadow);
+	}
+}
+
+.header-overlay {
+	@include backdrop-filter-blur($overlay-backdrop-filter);
+
+	position: fixed;
+	z-index: math.round($zindex-sticky - 1);
+	width: 100vw;
+	height: 100vh;
+	animation: fadeIn 0.2s;
+	animation-delay: 0.2s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	background: rgba($overlay-background-color, $overlay-background-opacity);
+	opacity: 0;
+	transition: $transition-base, top 0.2s ease;
+
+	&-left-menu {
+		top: map-deep-get($header, mobile, height);
+		left: map.get($aside, width);
+	}
+
+	&-right-menu {
+		top: calc(
+			#{map-deep-get($header, mobile, height)} + #{$spacer} + #{var(--header-right-height)}
+		);
+		left: 0;
+	}
+}
+
+.mobile-header {
+	@include dark-mode {
+		background-color: rgba(
+			map-deep-get($header, mobile, dark-background-color),
+			map-deep-get($header, mobile, opacity)
+		);
+		color: if(
+			map-deep-get($header, mobile, dark-color),
+			map-deep-get($header, mobile, dark-color),
+			color-contrast(
+				map-deep-get($header, mobile, dark-background-color),
+				map.get($header, color)
+			)
+		);
+	}
+	@include backdrop-filter-blur(map-deep-get($header, mobile, blur));
+
+	position: fixed;
+	z-index: $zindex-fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	display: flex;
+	width: 100%;
+	height: map-deep-get($header, mobile, height);
+	align-items: center;
+	background-color: rgba(
+		map-deep-get($header, mobile, background-color),
+		map-deep-get($header, mobile, opacity)
+	);
+	color: if(
+		map-deep-get($header, mobile, color),
+		map-deep-get($header, mobile, color),
+		color-contrast(
+			map-deep-get($header, mobile, background-color),
+			map.get($header, color-dark)
+		)
+	);
+
+	@include media-breakpoint-up(map.get($aside, mobile-breakpoint)) {
+		display: none;
+	}
+
+	& &-toggle {
+		&:not(:first-child) {
+			@include margin-left($spacer);
+		}
+
+		.svg-icon {
+			width: 2rem;
+			height: 2rem;
+		}
+	}
+}

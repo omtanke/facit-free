@@ -1,0 +1,76 @@
+//
+//  Wrapper
+//
+
+@use 'sass:map';
+
+.wrapper {
+	display: flex;
+	flex: 1 auto;
+	flex-direction: column;
+	transition: $transition-base;
+
+	@include aside-close-wrapper {
+		@include media-breakpoint-down(map-get($aside, mobile-breakpoint)) {
+			left: 0;
+		}
+
+		@include media-breakpoint-up(map-get($aside, mobile-breakpoint)) {
+			padding-left: map-deep-get($aside, minimize, width);
+		}
+	}
+
+	@include aside-close-wrapper(true) {
+		@include media-breakpoint-up(map-get($aside, mobile-breakpoint)) {
+			padding-left: map-deep-get($aside, minimize, width) + ($spacer);
+		}
+	}
+
+	@include aside-touch-close-wrapper {
+		@include media-breakpoint-up(map-get($aside, mobile-breakpoint)) {
+			padding-left: $modern-design-size * 0.5;
+		}
+	}
+
+	// If before aside
+	.aside ~ & {
+		padding-left: map.get($aside, width);
+
+		@include media-breakpoint-down(map-get($aside, mobile-breakpoint)) {
+			position: relative;
+			left: map-deep-get($aside, width);
+		}
+		// Mobile Status
+		@include media-breakpoint-down(map-get($aside, mobile-breakpoint)) {
+			padding-left: 0;
+		}
+	}
+
+	// Aside is fly
+	@at-root .modern-design .aside ~ & {
+		@include aside-modern {
+			padding-left: map.get($aside, width) + ($spacer);
+		}
+	}
+
+	// Right Panel
+	&.wrapper-right-panel-active {
+		width: calc(100% - #{$offcanvas-horizontal-width});
+	}
+}
+
+.wrapper-overlay {
+	@include backdrop-filter-blur($overlay-backdrop-filter);
+
+	position: fixed;
+	z-index: $zindex-fixed;
+	width: 100vw;
+	height: 100vh;
+	animation: fadeIn 0.2s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	background: rgba($overlay-background-color, $overlay-background-opacity);
+	opacity: 0;
+	transition: $transition-base;
+}

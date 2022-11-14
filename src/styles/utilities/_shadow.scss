@@ -1,0 +1,110 @@
+//
+//  Shadow [Utilities]
+//
+
+%shadow-3d-root-style {
+	position: absolute;
+	height: 100%;
+	border-radius: inherit;
+	box-shadow: none;
+	content: '';
+	transition: $transition-base;
+}
+
+// stylelint-disable-next-line selector-max-specificity, selector-not-notation
+[class*='shadow-3d-']:not(.shadow-3d-container):not([class*='rccs-shadow-3d-'])::before,
+[class*='rccs-shadow-3d-'] .rccs::before {
+	// stylelint-disable-next-line at-rule-disallowed-list
+	@extend %shadow-3d-root-style;
+	@include backdrop-filter-blur(0.5rem);
+
+	//	stylelint-disable-next-line scale-unlimited/declaration-strict-value
+	z-index: -1;
+	top: 1rem;
+	right: 1rem;
+	left: 1rem;
+}
+
+// stylelint-disable-next-line selector-max-specificity, selector-not-notation
+[class*='shadow-3d-']:not(.shadow-3d-container):not([class*='rccs-shadow-3d-'])::after,
+[class*='rccs-shadow-3d-'] .rccs::after {
+	// stylelint-disable-next-line at-rule-disallowed-list
+	@extend %shadow-3d-root-style;
+
+	//	stylelint-disable-next-line scale-unlimited/declaration-strict-value
+	z-index: -2;
+	top: 1.75rem;
+	right: 2rem;
+	left: 2rem;
+}
+
+[class*='shadow-3d-']:not(.shadow-3d-container) {
+	position: relative;
+	top: 0;
+	margin-bottom: 3rem;
+	transition: $transition-base;
+}
+
+// Theme colors
+.shadow-3d {
+	@each $state, $value in $theme-colors {
+		&-#{$state} {
+			&::before {
+				background: rgba($value, 0.3);
+			}
+
+			&::after {
+				background: rgba($value, 0.15);
+			}
+		}
+	}
+}
+
+// Hover Effect
+.shadow-3d-hover:hover {
+	top: 1rem;
+
+	&::before {
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		transform: rotate(3deg);
+	}
+
+	&::after {
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		transform: rotate(-3deg);
+	}
+}
+
+.shadow-3d-up-hover:hover {
+	top: 0.25rem;
+
+	// stylelint-disable declaration-no-important
+	&::before {
+		top: 0.5rem !important;
+		right: 0.5rem !important;
+		left: 0.5rem !important;
+	}
+
+	&::after {
+		top: 0.875rem !important;
+		right: 1rem !important;
+		left: 1rem !important;
+	}
+	// stylelint-enable declaration-no-important
+}
+
+/**
+ *Fixed z-index value
+ *
+ *no need to use it all the time, just to fix it when the image is distorted
+ */
+.shadow-3d-container {
+	// stylelint-disable-next-line scale-unlimited/declaration-strict-value
+	z-index: 1;
+}

@@ -1,0 +1,11 @@
+//
+// Color Type Change
+//
+
+@function hex-to-rgb($color) {
+	@return red($color), green($color), blue($color);
+}
+
+@function rgba-to-rgb($rgba, $background: #fff) {
+	@return mix(rgb(red($rgba), green($rgba), blue($rgba)), $background, alpha($rgba) * 100%);
+}

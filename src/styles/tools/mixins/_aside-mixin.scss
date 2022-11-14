@@ -1,0 +1,51 @@
+//
+//	Aside Mixins
+//
+
+@mixin aside-modern() {
+	@include media-breakpoint-up($modern-design-breakpoint) {
+		@content;
+	}
+}
+
+@mixin aside-close($in-aside: false) {
+	@if $in-aside {
+		@at-root .aside:not(.open):not(:hover) {
+			@content;
+		}
+	} @else {
+		@include media-breakpoint-up(map-get($aside, mobile-breakpoint)) {
+			@at-root .aside:not(.open):not(:hover) & {
+				@content;
+			}
+		}
+	}
+}
+
+@mixin aside-close-wrapper($isFly: false) {
+	@if $isFly {
+		@include aside-modern {
+			@at-root .modern-design .aside:not(.open) + & {
+				@content;
+			}
+		}
+	} @else {
+		@at-root .aside:not(.open) + & {
+			@content;
+		}
+	}
+}
+
+@mixin aside-touch-close-wrapper() {
+	@include aside-modern {
+		@at-root .modern-design .aside:not([style*='left: 0']) ~ & {
+			@content;
+		}
+	}
+}
+
+@mixin aside-elements() {
+	@at-root .aside & {
+		@content;
+	}
+}

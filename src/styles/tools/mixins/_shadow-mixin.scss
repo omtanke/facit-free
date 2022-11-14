@@ -1,0 +1,27 @@
+//
+//	Shadow Mixins
+//
+
+@mixin shadow-variants-button() {
+	// stylelint-disable declaration-no-important
+	&-none:hover {
+		box-shadow: none !important;
+	}
+
+	&:hover {
+		box-shadow: $box-shadow !important;
+	}
+
+	&-sm:hover {
+		box-shadow: $box-shadow-sm !important;
+	}
+
+	&-lg:hover {
+		box-shadow: $box-shadow-lg !important;
+	}
+
+	&-inset:hover {
+		box-shadow: $box-shadow-inset !important;
+	}
+	// stylelint-enable declaration-no-important
+}

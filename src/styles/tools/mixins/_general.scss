@@ -1,0 +1,46 @@
+//
+//	General
+//
+
+@mixin child-space($space: $spacer) {
+	> *:not(:last-child) {
+		@include margin-right($space);
+	}
+}
+
+@mixin child-space-bottom($space: $spacer) {
+	> *:not(:last-child) {
+		@include margin-bottom($space);
+	}
+}
+
+// For only Safari
+@mixin only-safari() {
+	@media not all and (min-resolution: 0.001dpcm) {
+		@supports (-webkit-appearance: none) {
+			@content;
+		}
+	}
+}
+
+@mixin rtl($value, $ltr-property, $rtl-property) {
+	@at-root html:not([dir='rtl']) & {
+		#{$ltr-property}: $value;
+	}
+
+	@at-root [dir='rtl'] & {
+		#{$rtl-property}: $value;
+	}
+}
+
+@mixin dark-mode($withOutParent: false) {
+	@if $withOutParent {
+		@at-root [theme='dark'] {
+			@content;
+		}
+	} @else {
+		@at-root [theme='dark'] & {
+			@content;
+		}
+	}
+}

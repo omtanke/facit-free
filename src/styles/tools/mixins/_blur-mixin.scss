@@ -1,0 +1,12 @@
+//
+//  Blur Mixin
+//
+
+@mixin backdrop-filter-blur($value) {
+	@if $enable-blur {
+		backdrop-filter: blur($value);
+		will-change: backdrop-filter;
+	} @else {
+		backdrop-filter: none;
+	}
+}

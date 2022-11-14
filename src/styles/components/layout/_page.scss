@@ -1,0 +1,15 @@
+//
+//  Page
+//
+
+.page {
+	@include padding-top(map-get($page, padding-y));
+
+	display: flex;
+	flex: 1 0 auto;
+	flex-direction: column;
+
+	@include only-safari {
+		// height: calc(100% - #{map-get($footer, height)});
+	}
+}

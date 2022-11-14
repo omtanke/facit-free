@@ -1,0 +1,117 @@
+@use 'sass:math';
+
+@import './containers';
+@import './types';
+
+@keyframes timer {
+	0% {
+		width: 100%;
+	}
+
+	100% {
+		width: 0%;
+	}
+}
+
+.rnc__base {
+	position: fixed;
+	z-index: math.round(9000);
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.rnc__notification-item {
+	position: relative;
+	display: flex;
+	margin-bottom: $notification-space;
+	border-radius: $notification-border-radius;
+	box-shadow: $notification-box-shadow;
+	cursor: pointer;
+}
+
+.rnc__notification-container--top-full .rnc__notification-item,
+.rnc__notification-container--bottom-full .rnc__notification-item {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+.rnc__notification-timer {
+	width: 100%;
+	height: $notification-timer-height;
+	margin-top: $notification-timer-top;
+	border-radius: $notification-border-radius;
+}
+
+.rnc__notification-timer-filler {
+	height: $notification-timer-height;
+	border-radius: $notification-border-radius;
+}
+
+.rnc__notification-title {
+	margin-top: $notification-space * 0.5;
+	margin-bottom: $notification-space * 0.5;
+	color: $white;
+	font-size: $font-size-root;
+	font-weight: 700;
+}
+
+.rnc__notification-message {
+	max-width: calc(100% - #{$notification-space});
+	margin-top: 0;
+	margin-bottom: 0;
+	color: $white;
+	font-size: $font-size-root;
+	line-height: 150%;
+	word-wrap: break-word;
+}
+
+.rnc__notification-content {
+	display: inline-block;
+	width: 100%;
+	padding: ($notification-space * 0.5) $notification-space;
+}
+
+.rnc__notification-close-mark {
+	position: absolute;
+	top: $notification-close-gutter;
+	right: $notification-close-gutter;
+	display: inline-block;
+	width: $notification-close-size;
+	height: $notification-close-size;
+	border-radius: 50%;
+
+	&::after {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		color: $white;
+		content: '\D7';
+		font-size: $notification-close-size;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.rnc__notification-container--mobile-top .rnc__notification-item,
+.rnc__notification-container--mobile-bottom .rnc__notification-item,
+.rnc__notification-container--mobile-top .notification,
+.rnc__notification-container--mobile-bottom .notification {
+	width: 100%;
+	max-width: 100%;
+}
+
+.rnc__notification-container--top-right .notification,
+.rnc__notification-container--bottom-right .notification {
+	margin-left: auto;
+}
+
+.rnc__notification-container--top-left .notification,
+.rnc__notification-container--bottom-left .notification {
+	margin-right: auto;
+}
+
+.rnc__notification-container--mobile-top .notification,
+.rnc__notification-container--mobile-bottom .notification {
+	margin-right: auto;
+	margin-left: auto;
+}

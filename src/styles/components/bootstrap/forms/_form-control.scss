@@ -1,0 +1,68 @@
+//
+// Form Control
+//
+
+.form-control {
+	@include dark-mode {
+		background-color: $dark-input-bg;
+		color: $dark-input-color;
+
+		&:not([class*='valid']) {
+			border-color: $dark-input-border-color;
+		}
+	}
+
+	&:focus {
+		// @include box-shadow($box-shadow);
+	}
+
+	// Disabled and read-only inputs
+	//
+	// HTML5 says that controls under a fieldset > legend:first-child won't be
+	// disabled if the fieldset is disabled. Due to implementation difficulty, we
+	// don't honor that edge case; we style them as disabled anyway.
+	&:disabled,
+	&[readonly] {
+		@include dark-mode {
+			background-color: $dark-input-disabled-bg;
+		}
+	}
+}
+
+// Readonly controls as plain text
+//
+// Apply class to a readonly input to make it appear like regular plain
+// text (without any border, background color, focus indicator)
+
+.form-control-plaintext {
+	@include dark-mode {
+		color: $dark-input-plaintext-color;
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.form-control[type='file']::-webkit-file-upload-button {
+	@include dark-mode {
+		background-color: $dark-input-file-upload-button-bg;
+	}
+
+	background-color: $input-file-upload-button-bg;
+}
+
+@include dark-mode(true) {
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	textarea:-webkit-autofill,
+	textarea:-webkit-autofill:hover,
+	textarea:-webkit-autofill:focus,
+	select:-webkit-autofill,
+	select:-webkit-autofill:hover,
+	select:-webkit-autofill:focus {
+		box-shadow: 0 0 0 100rem $dark-input-autofill-bg inset;
+		-webkit-text-fill-color: $dark-input-autofill-color;
+	}
+}

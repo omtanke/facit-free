@@ -1,0 +1,18 @@
+//
+// Ellipsis
+//
+
+// stylelint-disable
+%truncate {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+}
+
+@for $i from 1 through 6 {
+	.truncate-line-#{$i} {
+		@extend %truncate;
+		-webkit-line-clamp: $i;
+	}
+}
+// stylelint-enable

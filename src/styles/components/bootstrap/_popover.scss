@@ -1,0 +1,72 @@
+//
+//	Popover
+//
+
+.popover {
+	@include dark-mode {
+		background-color: $dark-popover-bg;
+	}
+
+	&:not([data-popper-placement^='-']) > .popover-arrow {
+		margin: 0;
+	}
+}
+
+.bs-popover-top {
+	@include dark-mode {
+		> .popover-arrow {
+			&::before {
+				border-top-color: $dark-popover-arrow-outer-color;
+			}
+
+			&::after {
+				border-top-color: $dark-popover-arrow-color;
+			}
+		}
+	}
+}
+
+.bs-popover-end {
+	@include dark-mode {
+		> .popover-arrow {
+			&::after {
+				border-right-color: $dark-popover-arrow-color;
+			}
+		}
+	}
+}
+
+.bs-popover-bottom {
+	@include dark-mode {
+		> .popover-arrow {
+			&::after {
+				border-bottom-color: $dark-popover-arrow-color;
+			}
+		}
+	}
+}
+
+.bs-popover-start {
+	@include dark-mode {
+		> .popover-arrow {
+			&::after {
+				border-left-color: $dark-popover-arrow-color;
+			}
+		}
+	}
+}
+
+.popover-header {
+	@include dark-mode {
+		background-color: $dark-popover-header-bg;
+	}
+}
+
+.popover-body {
+	color: var(--#{$prefix}body-color);
+}
+
+.popover-string {
+	cursor: help;
+	text-decoration: underline dotted;
+}

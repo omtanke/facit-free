@@ -1,0 +1,616 @@
+//
+// Settings
+// SETTINGS - Tools - Generic - Elements - Objects - Components - Vendors - Utilities
+//
+
+@use 'sass:math';
+@use 'sass:map';
+
+//	stylelint-disable no-invalid-position-at-import-rule
+@import 'node_modules/bootstrap/scss/functions';
+//	stylelint-enable no-invalid-position-at-import-rule
+
+// stylelint-disable annotation-no-unknown
+
+//
+// Color system
+//
+
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+$grays: (
+	'100': $gray-100,
+	'200': $gray-200,
+	'300': $gray-300,
+	'400': $gray-400,
+	'500': $gray-500,
+	'600': $gray-600,
+	'700': $gray-700,
+	'800': $gray-800,
+	'900': $gray-900,
+);
+
+$primary: #6c5dd3; // Don't forget to make changes to the .env file as well.
+$secondary: #ffa2c0; // Don't forget to make changes to the .env file as well.
+$success: #46bcaa; // Don't forget to make changes to the .env file as well.
+$info: #4d69fa; // Don't forget to make changes to the .env file as well.
+$warning: #ffcf52; // Don't forget to make changes to the .env file as well.
+$danger: #f35421; // Don't forget to make changes to the .env file as well.
+$light: #e7eef8; // Don't forget to make changes to the .env file as well.
+$dark: #1f2128; // Don't forget to make changes to the .env file as well.
+
+//
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-shadows: true;
+$enable-blur: true;
+
+// Prefix for :root CSS variables
+
+$variable-prefix: bs- !default; // Deprecated in v5.2.0 for the shorter `$prefix`
+$prefix: $variable-prefix !default;
+
+//
+// Gradient
+//
+// The gradient which is added to components if `$enable-gradients` is `true`
+// This gradient is also added to elements with `.bg-gradient`
+
+//
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+$spacer: 1rem; // Don't forget to make changes to the .env file as well.
+$enable-negative-margins: true;
+
+//
+// Position
+//
+// Define the edge positioning anchors of the position utilities.
+$position-values: (
+	0: 0,
+	5: 5%,
+	10: 10%,
+	15: 15%,
+	20: 20%,
+	25: 25%,
+	30: 30%,
+	35: 35%,
+	40: 40%,
+	45: 45%,
+	50: 50%,
+	55: 55%,
+	60: 60%,
+	65: 65%,
+	70: 70%,
+	75: 75%,
+	80: 80%,
+	85: 85%,
+	90: 90%,
+	95: 95%,
+	100: 100%,
+);
+
+//
+// Body
+//
+// Settings for the `<body>` element.
+$body-color: #323232;
+
+$dark-body-color: $light !default;
+$dark-body-bg: #1f2128 !default;
+
+//
+// Links
+//
+// Style anchor elements.
+
+//
+// Paragraphs
+//
+// Style p element.
+
+// Grid breakpoints
+
+// Grid containers
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-gutter-width: 1.5rem !default;
+
+// Container padding
+
+//
+// Components
+//
+// Define common padding and border radius sizes and more.
+
+$border-color: $gray-300;
+$dark-border-color: $gray-700;
+
+$border-radius: 1rem;
+$border-radius-sm: $border-radius * 0.875;
+$border-radius-lg: $border-radius * 1.25;
+
+$box-shadow: 0 1.6rem 3rem rgba($black, 0.1);
+$box-shadow-sm: 0 0.8rem 3rem rgba($black, 0.075);
+$box-shadow-lg: 0 1.6rem 3rem rgba($black, 0.175);
+
+//
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+//	stylelint-disable-next-line no-invalid-position-at-import-rule, import-notation
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+// $font-family-base: 'Montserrat', sans-serif;
+$font-family-base: 'Poppins', var(--bs-font-sans-serif);
+
+// $font-size-root effects the value of `rem`, which is used for as well font sizes, paddings and margins
+// $font-size-base effects the font size of the body text
+$font-size-root: 0.8125rem; // `13px`
+$font-size-base: 1rem; // Assumes the browser default, typically `16px`
+$font-size-sm: $font-size-base * 0.875;
+$font-size-lg: $font-size-base * 1.25;
+
+$font-weight-lighter: lighter;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-bolder: bolder;
+
+$text-muted: rgba($gray-600, 0.75) !default;
+
+// Tables
+$table-color: $body-color;
+
+$dark-table-color: $dark-body-color !default;
+$dark-table-bg: transparent !default;
+
+$table-striped-order: even;
+
+$table-modern-cell-padding-y: $spacer !default;
+$table-modern-cell-padding-x: $spacer !default;
+
+$table-modern-border-radius: $border-radius !default;
+
+$table-modern-cell-vertical-align: middle !default;
+
+$table-striped-color: $table-color;
+$table-striped-bg-factor: 0.0375;
+$table-striped-bg: rgba($black, $table-striped-bg-factor);
+$dark-table-striped-color: $dark-table-color !default;
+$dark-table-striped-bg-factor: 0.0375 !default;
+$dark-table-striped-bg: rgba($white, $dark-table-striped-bg-factor) !default;
+
+$table-active-color: $table-color;
+$table-active-bg-factor: 0.1;
+$table-active-bg: rgba($black, $table-active-bg-factor);
+$dark-table-active-color: $dark-table-color;
+$dark-table-active-bg-factor: 0.1;
+$dark-table-active-bg: rgba($white, $dark-table-active-bg-factor);
+
+$table-hover-color: $table-color;
+$table-hover-bg-factor: 0.075;
+$table-hover-bg: rgba($black, $table-hover-bg-factor);
+$dark-table-hover-color: $dark-table-color !default;
+$dark-table-hover-bg-factor: 0.075 !default;
+$dark-table-hover-bg: rgba($white, $dark-table-hover-bg-factor) !default;
+
+$dark-table-border-color: $dark-border-color !default;
+
+//
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+$input-btn-padding-y: 0.5rem;
+$input-btn-padding-x: 1rem;
+
+$input-btn-padding-y-sm: math.div($input-btn-padding-y, 1.25);
+$input-btn-padding-x-sm: math.div($input-btn-padding-x, 1.25);
+
+$input-btn-padding-y-lg: $input-btn-padding-y * 1.25;
+$input-btn-padding-x-lg: $input-btn-padding-x * 1.25;
+
+//
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background, and border color.
+$btn-font-weight: 600;
+
+$btn-box-shadow: unset;
+$btn-focus-box-shadow: unset;
+
+// The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
+// See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
+$btn-contrast-ratio: 1.5 !default;
+
+// Forms
+$form-label-font-weight: 500;
+$form-label-color: $gray-600;
+
+$input-font-weight: 600;
+
+$input-bg: $gray-100;
+$dark-input-bg: $gray-900 !default;
+$dark-input-autofill-bg: shade-color($dark-input-bg, 30%) !default;
+$dark-input-disabled-bg: $gray-800 !default;
+
+$dark-input-color: $dark-body-color !default;
+$dark-input-autofill-color: $light !default;
+
+$input-border-color: $gray-100;
+$dark-input-border-color: $gray-800 !default;
+
+$input-file-upload-button-bg: $input-border-color !default;
+$dark-input-file-upload-button-bg: $gray-600 !default;
+
+// $input-box-shadow: 					unset;
+
+$dark-input-plaintext-color: $dark-body-color !default;
+
+$dark-form-check-input-bg: $dark-input-bg !default;
+$dark-form-check-input-border-color: $gray-800 !default;
+
+$input-border-radius: $border-radius;
+$input-border-radius-sm: $border-radius-sm;
+$input-border-radius-lg: $border-radius-lg;
+
+$dark-input-group-addon-color: $dark-input-color !default;
+$dark-input-group-addon-bg: $gray-800 !default;
+$dark-input-group-addon-border-color: $dark-input-border-color !default;
+
+$form-select-border-radius: $input-border-radius;
+$form-select-border-radius-sm: $input-border-radius-sm;
+$form-select-border-radius-lg: $input-border-radius-lg;
+
+$dark-form-range-track-bg: $gray-700 !default;
+
+// Form validation
+
+//
+// Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+$zindex-aside: 1035 !default;
+$zindex-dropdown: 1071;
+
+// Navs
+$dark-nav-tabs-border-color: $dark-border-color !default;
+$dark-nav-tabs-link-hover-border-color: $gray-800 $gray-800 $dark-nav-tabs-border-color !default;
+
+$dark-nav-tabs-link-active-color: $gray-300 !default;
+$dark-nav-tabs-link-active-bg: $dark-body-bg !default;
+$dark-nav-tabs-link-active-border-color: $gray-700 $gray-700 $dark-nav-tabs-link-active-bg !default;
+
+// Navbar
+
+//
+// Dropdowns
+//
+// Dropdown menu container and contents.
+$dropdown-min-width: 14rem;
+$dropdown-padding-y: $spacer * 0.75;
+
+$dropdown-item-wrapper-paddindg-y: 0 !default;
+$dropdown-item-wrapper-paddindg-x: $spacer * 0.75 !default;
+$dropdown-item-wrapper-min-height: 3rem !default;
+
+$dropdown-item-color: #808191 !default;
+$dropdown-item-border-radius: $border-radius !default;
+$dropdown-item-active-bg-color: $primary !default;
+
+$dropdown-item-icon-size: 1.5rem !default;
+$dropdown-item-icon-space: $spacer !default;
+
+$dropdown-border-radius: $border-radius * 1.5;
+$dropdown-border-width: 0;
+
+$dropdown-dark-bg: shade-color($primary, 93%);
+
+// Pagination
+$pagination-color: $dark;
+$pagination-bg: $gray-300;
+$pagination-border-color: $gray-300;
+
+$pagination-disabled-color: $gray-500;
+$pagination-disabled-bg: $gray-200;
+$pagination-disabled-border-color: $gray-200;
+
+$dark-pagination-color: $light !default;
+$dark-pagination-bg: $dark !default;
+$dark-pagination-border-color: tint-color($dark-pagination-bg, 5%) !default;
+$dark-pagination-hover-bg: tint-color($dark-pagination-bg, 10%) !default;
+
+$dark-pagination-disabled-color: shade-color($dark-pagination-color, 20%) !default;
+$dark-pagination-disabled-bg: tint-color($dark-pagination-bg, 20%) !default;
+$dark-pagination-disabled-border-color: $dark-pagination-hover-bg !default;
+
+//
+// Cards
+//
+$card-bg: $white !default;
+$dark-card-bg: #242731 !default;
+
+$card-spacer-y: $spacer * 1.5;
+$card-spacer-x: $spacer * 1.5;
+$card-border-radius: $border-radius * 2;
+
+$card-border-color: $gray-300;
+$dark-card-border-color: $gray-700;
+$card-border-opacity: 0.5 !default;
+$dark-card-border-opacity: 0.5 !default;
+$card-border-width: 0;
+$card-box-shadow: $box-shadow !default;
+
+$card-header-min-height: 4.5rem !default;
+$card-header-padding-y: $card-spacer-y !default;
+$card-header-background-color: $card-bg !default;
+$dark-card-header-background-color: transparent !default;
+$card-header-border-color: $card-border-color !default;
+$card-header-border-opacity: 0.5 !default;
+$card-header-border-size: 0 !default;
+$card-header-color: null !default;
+
+$card-header-icon-size: 2.5rem !default;
+$card-header-icon-space: $spacer * 0.5 !default;
+$card-header-icon-color: null !default;
+$card-header-title-font-weight: 700 !default;
+
+$card-body-padding-y: $card-spacer-y !default;
+
+$card-footer-min-height: 4.5rem !default;
+$card-footer-padding-y: $card-spacer-y !default;
+$card-footer-background-color: $card-bg !default;
+$dark-card-footer-background-color: $dark-card-bg !default;
+$card-footer-border-color: $card-border-color !default;
+$card-footer-border-opacity: 0.5 !default;
+$card-footer-border-size: 0 !default;
+$card-footer-color: null !default;
+
+//
+// Accordion
+$accordion-color: var(--#{$prefix}body-color) !default;
+$dark-accordion-color: $dark-body-color !default;
+$dark-accordion-bg: $dark-body-bg !default;
+
+$dark-accordion-button-color: $dark-accordion-color !default;
+$dark-accordion-button-bg: $dark-accordion-bg !default;
+
+$accordion-border-width: 0;
+$accordion-button-font-size: 1.25rem !default;
+$accordion-button-font-weight: 700 !default;
+
+$accordion-button-icon-size: 2.5rem !default;
+$accordion-button-icon-color: $primary !default;
+$accordion-button-icon-space: $spacer * 0.5 !default;
+
+$dark-accordion-button-color: $accordion-color !default;
+
+$dark-accordion-icon-color: $dark-accordion-button-color !default;
+
+$dark-accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$dark-accordion-icon-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+
+// Tooltips
+
+//
+// Popovers
+//
+$popover-bg: $white;
+$dark-popover-bg: shade-color($primary, 93%) !default;
+$popover-border-width: 1px;
+$popover-border-color: transparent;
+$popover-border-radius: $border-radius;
+
+$popover-header-bg: shade-color($popover-bg, 3%);
+$dark-popover-header-bg: tint-color($dark-popover-bg, 5%) !default;
+
+$dark-popover-arrow-color: $dark-popover-bg !default;
+
+$dark-popover-arrow-outer-color: fade-in($dark-popover-arrow-color, 0.05) !default;
+
+// Toasts
+$dark-toast-background-color: rgba(shade-color($primary, 95%), 0.85) !default;
+
+$dark-toast-header-background-color: $dark-toast-background-color !default;
+
+// Badges
+
+// Modals
+$modal-content-border-width: 0;
+$modal-backdrop--blur: 0.25rem !default;
+
+$dark-modal-content-bg: shade-color($dark-card-bg, 20%);
+
+//
+// Alerts
+//
+// Define alert colors, border radius, and padding.
+$alert-bg-scale: 0%;
+$alert-border-scale: 10%;
+$alert-color-scale: 0%;
+
+$alert-icon-size: 2rem !default;
+
+$dark-alert-bg-opacity-light: 0.3 !default;
+$alert-bg-scale-light: -80% !default;
+$alert-border-scale-light: -70% !default;
+$alert-color-scale-light: 40% !default;
+
+$dark-alert-bg-opacity-outline: 0.2 !default;
+$alert-bg-scale-outline: -100% !default;
+$alert-border-scale-outline: 0% !default;
+$alert-color-scale-outline: 40% !default;
+
+// Progress bars
+$dark-progress-bg: $gray-800 !default;
+
+// List group
+$dark-list-group-color: $gray-100 !default;
+$dark-list-group-bg: $dark !default;
+
+$dark-list-group-item-color-scale: 100%;
+
+// Image thumbnails
+
+// Figures
+
+//
+// Breadcrumbs
+//
+$breadcrumb-margin-bottom: 0;
+
+// Carousel
+$carousel-border-radius: $border-radius * 2 !default;
+$carousel-indicator-height: 10px; // stylelint-disable-line meowtec/no-px
+$carousel-indicator-width: 3rem;
+$carousel-indicator-border-radius: $carousel-indicator-height !default;
+$carousel-indicator-transition: all 0.2s ease-in-out;
+
+// Spinners
+
+// Close
+$dark-btn-close-color: $white !default;
+$dark-btn-close-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$dark-btn-close-color}'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>") !default;
+
+// Offcanvas
+// $offcanvas-vertical-height: 		50vh;
+
+$offcanvas-modal-space: $spacer !default;
+$offcanvas-modal-border-radius: $border-radius * 1.5 !default;
+$offcanvas-modal-backdrop-opacity: 0.25 !default;
+$offcanvas-modal-bg-color: rgba($black, $offcanvas-modal-backdrop-opacity) !default;
+$offcanvas-modal-backdrop-filter: 0.25rem !default;
+$offcanvas-modal-box-shadow: $box-shadow-lg !default;
+
+$dark-offcanvas-bg-color: $dark-modal-content-bg !default;
+$dark-offcanvas-right-panel-bg-color: shade-color($dark-body-bg, 70%) !default;
+
+// Code
+
+// Overlay
+$overlay-background-color: $black !default;
+$overlay-background-opacity: 0.5 !default;
+$overlay-backdrop-filter: 0.5rem !default;
+
+//
+//  Icon Sizes
+//
+$icon-sizes: (
+	'sm': $font-size-sm,
+	'md': $font-size-base,
+	'lg': $font-size-lg,
+	'2x': $font-size-base * 2,
+	'3x': $font-size-base * 3,
+	'4x': $font-size-base * 4,
+	'5x': $font-size-base * 5,
+	'6x': $font-size-base * 6,
+	'7x': $font-size-base * 7,
+	'8x': $font-size-base * 8,
+	'9x': $font-size-base * 9,
+	'10x': $font-size-base * 10,
+) !default;
+
+//
+//  Utilities Size
+//
+$g-utilities-sizes: (
+	sm: 0.5,
+	md: 1,
+	lg: 1.5,
+) !default;
+
+$notification-min-width: 20rem !default;
+$notification-max-width: 21.875rem !default;
+$notification-gutter: $grid-gutter-width !default;
+$notification-space: $spacer !default;
+$notification-border-radius: $border-radius-sm !default;
+$notification-box-shadow: $box-shadow !default;
+
+$notification-timer-height: 0.25rem !default;
+$notification-timer-top: $spacer !default;
+
+$notification-close-gutter: $spacer * 0.5 !default;
+$notification-close-size: 1.4rem !default;
+
+//
+// Apex Chart
+//
+$apexcharts-rangebar-color: #777 !default;
+$apexcharts-axistooltip-color: #373d3f !default;
+$apexcharts-icon-color: #6e8192 !default;
+
+$apexcharts-tooltip-z-index: 12 !default;
+$apexcharts-axistooltip-z-index: 10 !default;
+$apexcharts-toolbar-z-index: 11 !default;
+
+$apexcharts-light-color: rgba(245, 245, 245, 0.6) !default;
+
+//
+//	Layout
+//
+$modern-design-breakpoint: lg !default;
+$modern-design-size: $spacer !default;
+$modern-design-gutter-size: $grid-gutter-width !default;
+$modern-design-radius: $border-radius !default;
+$modern-design-shadow: $box-shadow !default;
+
+//
+// Timeline
+//
+$timeline-label-width: 5.5rem;
+$timeline-line-width: 3px; // stylelint-disable-line meowtec/no-px
+$timeline-item-space: $spacer * 1.25;
+$timeline-line-color: rgba($gray-500, 0.3);
+
+//
+// To/Do
+//
+$todo-item-height: 3rem;
+$todo-bar-width: $spacer * 0.25;
+
+// Configuration
+//	stylelint-disable no-invalid-position-at-import-rule
+@import 'node_modules/bootstrap/scss/variables';
+//	stylelint-enable no-invalid-position-at-import-rule
+
+// Create your own map
+$brand: #ffcd02 !default;
+$brand-two: #323232 !default;
+$transparent: transparent !default;
+$storybook: #ff4785 !default;
+
+$custom-colors: (
+	'brand': $brand,
+	'brand-two': $brand-two,
+	'transparent': $transparent,
+	'storybook': $storybook,
+);
+
+// Merge the maps
+$theme-colors: map.merge($theme-colors, $custom-colors);
+
+//	stylelint-disable no-invalid-position-at-import-rule
+@import 'node_modules/bootstrap/scss/maps';
+@import 'node_modules/bootstrap/scss/mixins';
+@import 'node_modules/bootstrap/scss/root';
+@import 'node_modules/bootstrap/scss/utilities';
+//	stylelint-enable no-invalid-position-at-import-rule
+
+// stylelint-enable annotation-no-unknown

@@ -1,0 +1,105 @@
+//
+//	Subheader
+//
+
+@use 'sass:math';
+@use 'sass:map';
+
+.subheader {
+	--#{$prefix}subheader-bg: #{rgba(
+			map.get($subheader, background-color),
+			map.get($subheader, opacity)
+		)};
+	--#{$prefix}subheader-color: #{if(
+			map.get($subheader, color),
+			map.get($subheader, color),
+			color-contrast(map.get($subheader, background-color), map.get($subheader, color-dark))
+		)};
+	--#{$prefix}subheader-border-bottom-color: #{map.get($subheader, border-color)};
+	@include dark-mode {
+		--#{$prefix}subheader-bg: #{rgba(
+				map.get($subheader, dark-background-color),
+				map.get($subheader, opacity)
+			)};
+		--#{$prefix}subheader-color: #{if(
+				map.get($subheader, color),
+				color-contrast(
+					map.get($subheader, dark-background-color),
+					map.get($subheader, color-dark)
+				),
+				map.get($subheader, color)
+			)};
+		--#{$prefix}subheader-border-bottom-color: #{map.get($subheader, dark-border-color)};
+	}
+	@include padding(map.get($subheader, padding-y) map.get($subheader, padding-x));
+	@include backdrop-filter-blur(map.get($subheader, blur));
+
+	position: sticky;
+	z-index: math.round($zindex-sticky - 1);
+	top: 0;
+	display: flex;
+	min-height: map.get($subheader, height);
+	align-items: center;
+	border-bottom: map.get($subheader, border-size) solid
+		var(--#{$prefix}subheader-border-bottom-color);
+	margin-top: map.get($content, padding-y) * -1;
+	margin-bottom: map.get($content, padding-y);
+	background-color: var(--#{$prefix}subheader-bg);
+	box-shadow: map.get($header, box-shadow);
+	color: var(--#{$prefix}subheader-color);
+
+	@at-root .header + .content & {
+		top: map.get($header, height);
+	}
+
+	@include media-breakpoint-down(map.get($aside, mobile-breakpoint)) {
+		min-height: fit-content;
+
+		> * {
+			@include padding-top($spacer);
+			@include padding-bottom($spacer);
+		}
+	}
+}
+
+// If header is fly
+@include header-modern {
+	.modern-design .subheader {
+		// stylelint-disable-line
+		@include margin-left($grid-gutter-width * 0.5);
+		@include margin-right($grid-gutter-width * 0.5);
+		@include border-radius($modern-design-radius);
+
+		border-bottom: 0;
+	}
+}
+
+.subheader-left {
+	@include child-space;
+
+	display: flex;
+	align-items: center;
+
+	@include media-breakpoint-down(sm) {
+		@include child-space-bottom;
+
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+.subheader-right {
+	@include child-space;
+
+	display: flex;
+	align-items: center;
+}
+
+.subheader-separator {
+	height: 2rem;
+	border-left: 1px solid map-deep-get($subheader, separator, border-color);
+
+	@include media-breakpoint-down(sm) {
+		display: none;
+	}
+}

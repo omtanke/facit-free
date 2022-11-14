@@ -1,0 +1,16 @@
+//
+// Input Group
+//
+
+// Textual addons
+//
+// Serves as a catch-all element for any text or radio/checkbox input you wish
+// to prepend or append to an input.
+
+.input-group-text {
+	@include dark-mode {
+		background-color: $dark-input-group-addon-bg;
+		border-color: $dark-input-group-addon-border-color;
+		color: $dark-input-group-addon-color;
+	}
+}

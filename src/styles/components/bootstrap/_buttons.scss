@@ -1,0 +1,168 @@
+//
+//  Button
+//
+
+@use 'sass:math';
+
+.btn {
+	$self: &;
+
+	&-icon {
+		width: math.round(rem-to-px($btn-font-size, true));
+		height: math.round(rem-to-px($btn-font-size, true));
+		//  stylelint-disable-next-line meowtec/no-px
+		margin-top: -2px;
+		#{ $self }:not(#{ $self }-only-icon) & {
+			@include margin-right(0.5rem);
+		}
+
+		.btn-sm & {
+			width: math.round(rem-to-px($btn-font-size-sm, true));
+			height: math.round(rem-to-px($btn-font-size-sm, true));
+		}
+
+		.btn-lg & {
+			width: math.round(rem-to-px($btn-font-size-lg, true));
+			height: math.round(rem-to-px($btn-font-size-lg, true));
+		}
+	}
+
+	/*
+	Status
+   */
+	// Button Icon
+	&-only-icon {
+		@include padding($btn-padding-y 0);
+
+		/**
+		 * Targeting with data to svg in the button
+		 */
+		position: relative;
+		// stylelint-disable meowtec/no-px
+		width: calc(
+			#{math.round(rem-to-px(($btn-font-size + 0.25), true))} + (#{$btn-padding-y} * 2) + 1px
+		);
+		height: calc(
+			#{math.round(rem-to-px(($btn-font-size + 0.25), true))} + (#{$btn-padding-y} * 2) + 1px
+		);
+		// stylelint-enable meowtec/no-px
+
+		/**
+		 * Targeting with data to svg in the button
+		 */
+		&::before {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 100%;
+			background: transparent;
+			content: ' ';
+		}
+
+		&.btn-sm {
+			@include padding($btn-padding-y-sm);
+
+			// stylelint-disable meowtec/no-px
+			width: calc(
+				#{math.round(rem-to-px(($btn-font-size-sm + 0.25), true))} + (
+						#{$btn-padding-y-sm} * 2
+					) + 2px
+			);
+			height: calc(
+				#{math.round(rem-to-px(($btn-font-size-sm + 0.25), true))} + (
+						#{$btn-padding-y-sm} * 2
+					) + 2px
+			);
+			// stylelint-enable meowtec/no-px
+		}
+
+		&.btn-lg {
+			@include padding($btn-padding-y-lg);
+
+			// stylelint-disable meowtec/no-px
+			width: calc(
+				#{math.round(rem-to-px(($btn-font-size-lg + 0.25), true))} + (
+						#{$btn-padding-y-lg} * 2
+					) + 2px
+			);
+			height: calc(
+				#{math.round(rem-to-px(($btn-font-size-lg + 0.25), true))} + (
+						#{$btn-padding-y-lg} * 2
+					) + 2px
+			);
+			// stylelint-enable meowtec/no-px
+		}
+	}
+
+	//  Theme Default
+	@each $color, $value in $theme-colors {
+		&.btn-#{$color} {
+			color: color-contrast($value, $dark, $white, $btn-contrast-ratio);
+		}
+	}
+
+	//  Theme Outline
+	@each $color, $value in $theme-colors {
+		&.btn-outline-#{$color} {
+			@include dark-mode {
+				@include button-outline-variant(
+					if(
+						$color == light,
+						shade-color($value, 10%),
+						(if($color == dark, shade-color($value, 45%), $value))
+					),
+					tint-color($value, 45%),
+					rgba($value, 0.3),
+					rgba($value, 0.1),
+					tint-color($value, if($color == light, 45%, 30%))
+				);
+			}
+			@include button-outline-variant(
+				if($color == light, shade-color($value, 45%), $value),
+				shade-color($value, if($color == light, 45%, 0%)),
+				if($color == light, shade-color($value, 10%), tint-color($value, 90%)),
+				shade-color($value, if($color == light, 45%, 0%)),
+				shade-color($value, if($color == light, 45%, 15%))
+			);
+		}
+	}
+
+	//  Light Colors
+	@each $color, $value in $theme-colors {
+		&-light-#{$color} {
+			@include dark-mode {
+				@include button-variant(
+					if($color == dark, rgba(#000, 0.3), rgba($value, 0.3)),
+					rgba($value, 0.1),
+					if($color == dark, #fff, tint-color($value, if($color == light, 45%, 0%))),
+					rgba($value, 0.8),
+					rgba($value, 0.1),
+					color-contrast($value, $dark, $white, $btn-contrast-ratio),
+					auto-shade-tint($value, 10%),
+					auto-shade-tint($value, 10%),
+					color-contrast($value, $dark, $light, $btn-contrast-ratio)
+				);
+			}
+			@include button-variant(
+				tint-color($value, 90%),
+				tint-color($value, 90%),
+				shade-color($value, if($color == light, 45%, 0%)),
+				$value,
+				$value,
+				color-contrast($value, $dark, $white, $btn-contrast-ratio),
+				auto-shade-tint($value, 10%),
+				auto-shade-tint($value, 10%),
+				color-contrast($value, $dark, $light, $btn-contrast-ratio)
+			);
+		}
+	}
+
+	//    Shadow
+	&-hover-shadow {
+		@include shadow-variants-button;
+	}
+}
