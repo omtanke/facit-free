@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import Page from '../../../layout/Page/Page';
-import Card, { CardBody } from '../../../components/bootstrap/Card';
 import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../components/bootstrap/forms/Input';
 import Button from '../../../components/bootstrap/Button';
@@ -117,8 +116,9 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 			<Page className='p-0'>
 				<div className='row h-100 align-items-center justify-content-center'>
 					<div className='col-xl-4 col-lg-6 col-md-8 shadow-3d-container'>
-						<Card className='shadow-3d-dark' data-tour='login-page'>
-							<CardBody>
+						{/* A similar design was used as there was no card component. */}
+						<div className='bg-white rounded-5 shadow-3d-dark' data-tour='login-page'>
+							<div className='p-4'>
 								<div className='text-center my-5'>
 									<Link
 										to='/'
@@ -328,8 +328,8 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 									)}
 									{/* END :: Social Login */}
 								</form>
-							</CardBody>
-						</Card>
+							</div>
+						</div>
 						<div className='text-center'>
 							<a
 								href='/'

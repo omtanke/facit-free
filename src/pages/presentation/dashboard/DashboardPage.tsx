@@ -47,7 +47,7 @@ const DashboardPage = () => {
 				</div>
 
 				<ExampleButton />
-
+				<hr />
 				<ExampleForm />
 			</Page>
 		</PageWrapper>
