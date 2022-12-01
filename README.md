@@ -1,4 +1,4 @@
-# Facit | React Admin Dashboard Template V4.1.1
+# Facit | React Admin Dashboard Template V4.1.2
 
 #### Required files (Checked ones should definitely be in your project)
 - [x] public[^1]
