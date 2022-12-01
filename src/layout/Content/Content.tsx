@@ -11,12 +11,8 @@ const LOADING = (
 		</SubHeader>
 		<Page>
 			<div className='row h-100'>
-				<div className='col-lg-6'>
-					Ony Full Version
-				</div>
-				<div className='col-lg-6'>
-					Ony Full Version
-				</div>
+				<div className='col-lg-6'>Ony Full Version</div>
+				<div className='col-lg-6'>Ony Full Version</div>
 			</div>
 		</Page>
 	</PageWrapper>
